@@ -7,6 +7,6 @@ names = names_string.split(",")
 # print(names)
 # print(len(names))
 
-n = random.randint(0, len(names))  # 랜덤 인덱스 숫자(사람수 만큼)
+n = random.randint(0, len(names)-1)  # 랜덤 인덱스 숫자(사람수 만큼)
 
 print(f"오늘 커피는 {names[n]}(이)가 쏩니다!")
