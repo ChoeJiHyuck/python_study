@@ -1,0 +1,10 @@
+print('안녕하세요')
+print('이름이 무엇인가요?')
+myName = input()
+print('만나서 반갑습니다.' + myName)
+print('단신의 이름의 길이는: ')
+print(len(myName))
+print('당신의 나이는?')
+myAge = input()
+# 파이썬에서 문자열+숫자는 에러나므로 숫자를 tr(숫자) 변경해서 더한다.
+print('당신은 내년에 ' + str(int(myAge) + 1) + '살 입니다.')
