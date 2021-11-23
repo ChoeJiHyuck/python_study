@@ -22,7 +22,9 @@
         for (var key in dataJSON.할일들) {
             //console.log(key, dataJSON.할일들[key])
             var status = dataJSON.할일들[key] ? ' checked ' : '  '; // 할일이 true면 'checked' false 이면 ' '
-            var html = '<li>' + key + ' <input type="checkbox" value="' + key + '" ' + status + '></li>';
+            // js에서 문자열안에 변수넣는 템플릿 `${변수명}`
+            //var html = '<li>' + key + ' <input type="checkbox" value="' + key + '" ' + status + '></li>';
+            var html = `<li>${key} <input type="checkbox" value="${key}" ${status}></li>`;
             taskList.innerHTML += html;
         }
 
@@ -40,6 +42,7 @@
         }
 
         function updateJSON() {
+            console.log(event.target);
             var key = event.target.value;
             console.log(key, event.target.checked)
             dataJSON.할일들[key] = event.target.checked
