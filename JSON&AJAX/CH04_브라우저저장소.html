@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Learn JSON</h1>
+  <div id="output"></div>
+  <form id="myForm">
+    <input type="text" name="name" value="펭수"><br>
+    <input type="text" name="email" value="peng@naver.com"><br>
+    <input type="text" name="company" value="디스커버리"><br>
+    <input type="submit" value="전송">
+  </form>
+  <script>
+    // 브라우저 저장소에 저장하기 위해 객체를 제이슨형식으로 변환해서 저장하고
+    // 사용할때 또한 저장된 제이슨형식으로 다시 객체로 반환해서 사용
+    var myForm = document.getElementById('myForm');
+
+    window.onload = function () { // 웹사이트가 새로 시작될때 실행하는 함수
+      if (sessionStorage['person'] != null) { // 세션에 저장된 값이 있다면
+        var data = JSON.parse(sessionStorage['person']); // 세션에 저장된 값을 다시 제이슨 => 객체로 변환
+        var message = '환영합니다 ' + data.name + '님 ~~';
+        document.getElementById('output').innerHTML = message;
+        console.log(data)
+      }
+    }
+
+    // 폼태그에 이벤트리스너 전송할때 이벤트 실행
+    myForm.addEventListener('submit', function (e) {
+      e.preventDefault(); // 디폴트인 전송기능을 없앰
+      var data = JSON.stringify(formData(myForm)); // 제이슨 형식으로 변환
+      if (data) { // 입력 내용이 있을경우 
+        sessionStorage['person'] = data; // 브라우저의 세션저장소에 저장
+      }
+      console.log(data)
+    })
+
+    function formData(form) { // 입력창에 입력된 데이터들을 객체형태로 저장
+      var el = form.querySelectorAll('input[type="text"]');
+      var myData = {}; // 객체생성
+      for (var x = 0; x < el.length; x++) {
+        var name = el[x].name; // 텍스트 창의 name 과 입력된 값 value를 변수에 입력
+        var value = el[x].value;
+        myData[name] = value; // 객체 형태로 myData에 입력
+      }
+      console.log(myData);
+      return myData;
+    }
+  </script>
+</body>
+
+</html>

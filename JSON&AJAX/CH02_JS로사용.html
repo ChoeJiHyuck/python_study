@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이슨 사용</title>
+</head>
+<body>
+    <h1>자바스크립에서 객체 사용하기</h1>
+    <div id="output"></div>
+    <script>
+        var person = {
+            "이름": "펭수",
+            "자동차1": "소나타",
+            "자동차2": "엑센트"
+        }
+        var str1 = "자동차";
+        var cnt = 1;
+        // 객체 person.이름 또는 person["이름"] 으로 해당 값을 가져온다.
+        console.log(person.이름);
+        console.log(person["이름"]);
+        console.log(person[str1+cnt]);
+        cnt++;
+        console.log(person[str1+cnt]);
+
+        var myObj = {
+            "frinends": [
+                {
+                    "이름": "펭수",
+                    "나이": 7
+                },
+                {
+                    "이름": "라이언",
+                    "나이": 17
+                },
+                {
+                    "이름": "마틸다",
+                    "나이": 15
+                }
+            ]
+        }
+        var users = myObj.frinends; // 변수 유저에 객체의 배열이 입력됨
+        var html = ''; // 빈 변수 html 생성
+
+        for(var i in users){ // 배열의 for each 반복문
+            //console.log(users[i]);
+            html += (Number(i)+1)+ ' . ' + users[i].나이 + '<br>'
+        }
+
+        document.getElementById('output').innerHTML = html;
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이슨</title>
+</head>
+<body>
+    <h1>웹에서 받은 제이슨 데이터</h1>
+    <div id="output"></div>
+    <script>
+        //https://randomuser.me/api/
+        var data = '{"results":[{"gender":"male","name":{"title":"Mr","first":"Trym","last":"Schultz"},"location":{"street":{"number":8603,"name":"Haugerudveien"},"city":"Tornes","state":"Oslo","country":"Norway","postcode":"7871","coordinates":{"latitude":"52.2140","longitude":"-19.8637"},"timezone":{"offset":"-11:00","description":"Midway Island, Samoa"}},"email":"trym.schultz@example.com","login":{"uuid":"eb0d5d97-05a7-4f7b-89df-e709f4fad516","username":"ticklishzebra896","password":"miguel","salt":"awME0CRW","md5":"699b0251da37b1519d11561356e94562","sha1":"9ee71707cb883e2511d487a333a6e2b17073132a","sha256":"55dfb8696c89930f8c7efb732ba86d441a5819269a77e6baac44fde1af902684"},"dob":{"date":"1971-01-04T20:05:22.148Z","age":50},"registered":{"date":"2002-07-28T13:49:25.070Z","age":19},"phone":"82968314","cell":"42625034","id":{"name":"FN","value":"04017110956"},"picture":{"large":"https://randomuser.me/api/portraits/men/62.jpg","medium":"https://randomuser.me/api/portraits/med/men/62.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/62.jpg"},"nat":"NO"}],"info":{"seed":"43e286b2b4a49cf9","results":1,"page":1,"version":"1.3"}}'
+        //받아온 제이슨 데이터를 자바스크립트 객체형식으로 변환
+        var dataJSON = JSON.parse(data);
+        var person = dataJSON.results[0];
+        console.log(person); //results 배열의 첫번째 객체(어떤 인물의 정보들이 저장됨)
+        var output = document.getElementById('output');
+
+        var html = person.name.first + ' ' + person.name.last
+        html += '<img src="'+person.picture.thumbnail+'">'
+        output.innerHTML = html;
+
+        var strMe = JSON.stringify(dataJSON);
+        //console.log(strMe);
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JSON 연습</title>
+</head>
+
+<body>
+    <h1>Learn JSON</h1>
+    <div id="output">
+        <ul id="taskList"></ul>
+    </div>
+    <script type="text/javascript">
+        var data = '{"할일들":{"커피마시기":true,"청소하기":false,"운동하기":true,"요리하기":false}}';
+        var dataJSON = JSON.parse(data);
+        //console.log(dataJSON);
+
+        var output = document.getElementById('output'); // output 태그
+        var taskList = document.querySelector('#taskList'); // output안의 ul리스트 태그
+
+        for (var key in dataJSON.할일들) {
+            //console.log(key, dataJSON.할일들[key])
+            var status = dataJSON.할일들[key] ? ' checked ' : '  '; // 할일이 true면 'checked' false 이면 ' '
+            var html = '<li>' + key + ' <input type="checkbox" value="' + key + '" ' + status + '></li>';
+            taskList.innerHTML += html;
+        }
+
+        addEvents();
+
+        function addEvents() {
+            // 체크박스들을 저장
+            var checkBoxes = document.querySelectorAll('#taskList input[type="checkbox"]');
+            
+            //console.log(checkBoxes)
+            for (var index in checkBoxes) {
+                checkBoxes[index].onchange = updateJSON;
+            }
+            
+        }
+
+        function updateJSON() {
+            var key = event.target.value;
+            console.log(key, event.target.checked)
+            dataJSON.할일들[key] = event.target.checked
+        }
+
+   
+    </script>
+</body>
+
+</html>
