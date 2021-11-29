@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AJAX</title>
+</head>
+
+<body>
+    <h1>Learn AJAX</h1>
+    <div id="output"></div>
+    <button id="loadNew">Load</button>
+    
+    <script type="text/javascript">
+        // 빈태그 output을 변수로 저장 => 여기에 출력을 한다.
+        var output = document.getElementById('output');
+        // 버튼을 변수 저장 => 버튼을 클릭시 이벤트로 ajax로 제이슨 데이터를 가져온다.
+        var buttonClick = document.getElementById('loadNew')
+        // 버튼에 이벤트 클릭시 익명함수 실행 => loadAjax()
+        buttonClick.addEventListener('click',function(){
+            loadAjax();
+        })
+        function loadAjax(){ // 버튼 클릭시 실행되는 함수
+        var ajax = new XMLHttpRequest(); // 1. ajax 객체 생성
+        ajax.onreadystatechange = function(){
+            //console.log('state changed',ajax.readyState,ajax.status)
+            if(ajax.readyState == 4 && ajax.status==200){
+                   // console.log(ajax.responseText)
+                var json = JSON.parse(ajax.responseText); // 제이슨을 객체로 변환
+                 var data = json.results[0];
+         
+                var message = '<h2>'+data.name.first + '  ' + data.name.last + '</h2><img src="'+data.picture.large +'">'
+               
+                 output.innerHTML = message;
+            }
+        }
+        ajax.open('GET','https://randomuser.me/api/',true) // 방식, 요청 http 주소
+        ajax.send();                                       // 요청하기
+        }
+        
+    </script>
